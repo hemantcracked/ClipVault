@@ -5,11 +5,11 @@
 **Fast, ad-free, open-source All-in-One Media Saver for Android.**  
 Save videos, reels, audio, and statuses from **YouTube, Instagram, X (Twitter), and WhatsApp** in 1 tap.
 
-[![Download Latest APK](https://img.shields.io/github/v/release/YOUR_USERNAME/ClipVault?label=Download%20APK&style=for-the-badge&color=4F46E5)](https://github.com/YOUR_USERNAME/ClipVault/releases/latest)
-[![Android](https://img.shields.io/badge/Android-10%2B-059669?style=for-the-badge&logo=android&logoColor=white)](https://github.com/YOUR_USERNAME/ClipVault/releases/latest)
+[![Download Latest APK](https://img.shields.io/github/v/release/hemantcracked/ClipVault?label=Download%20APK&style=for-the-badge&color=4F46E5)](https://github.com/hemantcracked/ClipVault/releases/latest)
+[![Android](https://img.shields.io/badge/Android-10%2B-059669?style=for-the-badge&logo=android&logoColor=white)](https://github.com/hemantcracked/ClipVault/releases/latest)
 [![License](https://img.shields.io/badge/License-GPLv3-0891B2?style=for-the-badge)](LICENSE)
 
-🌐 **[Download Page](https://YOUR_USERNAME.github.io/ClipVault/)** • 📦 **[All Releases](https://github.com/YOUR_USERNAME/ClipVault/releases)**
+🌐 **[Download Page](https://hemantcracked.github.io/ClipVault/)** • 📦 **[All Releases](https://github.com/hemantcracked/ClipVault/releases)**
 
 </div>
 
@@ -26,7 +26,7 @@ Save videos, reels, audio, and statuses from **YouTube, Instagram, X (Twitter), 
 - **Privacy First:** 100% on-device, zero ads, zero tracking, zero analytics.
 
 ## How to Install
-1. Visit the **[ClipVault Download Page](https://YOUR_USERNAME.github.io/ClipVault/)** (or go to **[Releases](https://github.com/YOUR_USERNAME/ClipVault/releases/latest)**).
+1. Visit the **[ClipVault Download Page](https://hemantcracked.github.io/ClipVault/)** (or go to **[Releases](https://github.com/hemantcracked/ClipVault/releases/latest)**).
 2. Download the latest `ClipVault-vX.X.X.apk`.
 3. Tap the downloaded APK on your Android phone (allow *"Install unknown apps"* if prompted).
 4. *(Optional)* Use **[Obtainium](https://obtainium.imranr.dev/)** with this repo URL for automatic app updates.
