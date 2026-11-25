@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Bold rounded download shaft + chevron -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,28 C56.76,28 59,30.24 59,33 L59,54.17 L66.59,46.59 C68.54,44.63 71.71,44.63 73.66,46.59 C75.61,48.54 75.61,51.71 73.66,53.66 L57.54,69.78 C55.58,71.73 52.42,71.73 50.46,69.78 L34.34,53.66 C32.39,51.71 32.39,48.54 34.34,46.59 C36.29,44.63 39.46,44.63 41.41,46.59 L49,54.17 L49,33 C49,30.24 51.24,28 54,28 Z" />
+    <!-- Crisp rounded vault/tray base -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M31,73 C31,70.79 32.79,69 35,69 L73,69 C75.21,69 77,70.79 77,73 C77,76.87 73.87,80 70,80 L38,80 C34.13,80 31,76.87 31,73 Z" />
+</vector>
