@@ -35,16 +35,50 @@ jobs:
         run: |
           if [ -n "$KEYSTORE_BASE64" ]; then
             python3 -c '
-          import base64, os, re, sys
-          s = re.sub(r"-----.*?-----|\s+", "", os.environ["KEYSTORE_BASE64"])
-          try:
-              d = base64.b64decode(s, validate=True)
-          except Exception as e:
-              print(f"ERROR: KEYSTORE_BASE64 is not valid Base64 (length={len(s)} chars): {e}")
-              print("Tip: A .jks Base64 string is usually ~3000-4000 chars long (not a file path).")
-              sys.exit(1)
+          import base64, os, re
+          raw = os.environ["KEYSTORE_BASE64"]
+          cleaned = re.sub(r"-----.*?-----", "", raw)
+          cleaned = re.sub(r"[^A-Za-z0-9+/=]", "", cleaned)
+          d = base64.b64decode(cleaned, validate=True)
           open("release.jks", "wb").write(d)
-          print(f"Decoded release.jks successfully ({len(d)} bytes)")
+          print(f"Decoded release.jks successfully ({len(d)} bytes, stripped {len(raw) - len(cleaned)} stray char(s))")
           '
             echo "KEYSTORE_FILE=${{ github.workspace }}/release.jks" >> "$GITHUB_ENV"
           fi
+
+      - name: Build Signed Release APK
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleRelease
+
+      - name: Prepare Release Artifact
+        id: prep
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TAG="${{ github.event.inputs.version }}"
+          fi
+          APK_SRC=$(find app/build/outputs/apk/release -name "*.apk" | head -n 1)
+          if [ -z "$APK_SRC" ]; then
+            echo "ERROR: No release APK found!"
+            exit 1
+          fi
+          APK_OUT="ClipVault-${TAG}.apk"
+          cp "$APK_SRC" "$APK_OUT"
+          sha256sum "$APK_OUT" > "${APK_OUT}.sha256"
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "apk=${APK_OUT}" >> "$GITHUB_OUTPUT"
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.prep.outputs.tag }}
+          name: "ClipVault ${{ steps.prep.outputs.tag }}"
+          generate_release_notes: true
+          files: |
+            ${{ steps.prep.outputs.apk }}
+            ${{ steps.prep.outputs.apk }}.sha256
