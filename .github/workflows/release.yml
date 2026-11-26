@@ -34,7 +34,15 @@ jobs:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
         run: |
           if [ -n "$KEYSTORE_BASE64" ]; then
-            echo "$KEYSTORE_BASE64" | base64 -d > "${{ github.workspace }}/release.jks"
+            python3 -c '
+          import base64, os, re
+          raw = os.environ["KEYSTORE_BASE64"]
+          cleaned = re.sub(r"-----.*?-----", "", raw)
+          cleaned = re.sub(r"[^A-Za-z0-9+/=]", "", cleaned)
+          d = base64.b64decode(cleaned, validate=True)
+          open("release.jks", "wb").write(d)
+          print(f"Decoded release.jks successfully ({len(d)} bytes, stripped {len(raw) - len(cleaned)} stray char(s))")
+          '
             echo "KEYSTORE_FILE=${{ github.workspace }}/release.jks" >> "$GITHUB_ENV"
           fi
 
@@ -55,6 +63,10 @@ jobs:
             TAG="${{ github.event.inputs.version }}"
           fi
           APK_SRC=$(find app/build/outputs/apk/release -name "*.apk" | head -n 1)
+          if [ -z "$APK_SRC" ]; then
+            echo "ERROR: No release APK found!"
+            exit 1
+          fi
           APK_OUT="ClipVault-${TAG}.apk"
           cp "$APK_SRC" "$APK_OUT"
           sha256sum "$APK_OUT" > "${APK_OUT}.sha256"
