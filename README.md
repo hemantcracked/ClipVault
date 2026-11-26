@@ -43,6 +43,6 @@ ClipVault is intended strictly for saving publicly accessible media for personal
 Built by **Hemanth Pulicharla**
 - 🌐 Website: [hemanthpulicharla.pythonanywhere.com](https://hemanthpulicharla.pythonanywhere.com)
 - 💬 WhatsApp: [+91 78937 82351](https://wa.me/917893782351)
-- 📧 Email: [hemanthdevloper@gmail.com](mailto:hemanthdevloper@gmail.com)
+- 📧 Email: [hemanth.devloper@gmail.com](mailto:hemanthdevloper@gmail.com)
 
 © 2026 Hemanth Pulicharla. Licensed under GNU GPL v3.0.
